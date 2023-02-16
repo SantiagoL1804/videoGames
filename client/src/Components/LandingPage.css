@@ -1,0 +1,46 @@
+body {
+}
+
+.hero {
+  /* background-image: url("https://img.freepik.com/free-photo/modern-futuristic-sci-fi-background_35913-2152.jpg?w=1380&t=st=1669840413~exp=1669841013~hmac=7f45b99a8456f238c42f39f24732ac405b9d45b7a25fc914933313bd33c9f7f0");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150%;
+  background-attachment: fixed; */
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  padding: 0;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content h1 {
+}
+.content img {
+  width: 30%;
+  height: auto;
+}
+
+.backVideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .backVideo {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .backVideo {
+    width: auto;
+    height: 100%;
+  }
+}

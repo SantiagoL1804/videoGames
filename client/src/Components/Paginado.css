@@ -1,0 +1,44 @@
+.numbers {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+
+.number {
+  background-color: #424242;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 3px 10px 3px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}
+
+.number:hover {
+  background-color: gray;
+}
+
+.actualNumber {
+  background-color: gray;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 3px 10px 3px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}
+
+.disabled {
+  background-color: #424242;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 3px 10px 3px;
+  color: rgb(151, 151, 151);
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}

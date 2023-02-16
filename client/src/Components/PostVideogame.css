@@ -1,0 +1,218 @@
+:root {
+  --surface-color: #424242;
+  --curve: 40;
+}
+
+.postContainer {
+  background: rgb(77, 74, 74);
+  background: radial-gradient(
+    circle,
+    rgba(77, 74, 74, 1) 8%,
+    rgba(25, 25, 25, 1) 100%
+  );
+  margin: 0;
+}
+
+.formImg {
+  display: flex;
+  justify-content: center;
+  margin: 0 20px 20px 0;
+}
+
+.creedImg {
+  width: 500px;
+  margin-top: 20px;
+  height: auto;
+  min-height: 50rem;
+  box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.9);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.formContainer {
+  box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.9);
+  margin: 20px 20px 0 0;
+  height: auto;
+  width: 25rem;
+  background-color: #424242;
+  min-height: 50rem;
+
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.inlinePair {
+  display: flex;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  align-items: flex-start;
+}
+
+.formLabel {
+  font-size: 1rem;
+  color: white;
+}
+
+.formContainer input {
+  width: 20rem;
+  height: 1.2rem;
+  font-size: 15px;
+  border: none;
+  margin: 5px 0 5px 5px;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  background-color: #424242;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  padding: 10px;
+}
+
+.formContainer h2 {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.formContainer select {
+  width: 21rem;
+  height: 2.5rem;
+  font-size: 15px;
+  border: none;
+  margin: 5px 0 5px 5px;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  background-color: #424242;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  padding: 10px;
+}
+
+.formContainer textarea {
+  resize: none;
+  width: 20rem;
+  height: 3rem;
+  font-size: 15px;
+  border: none;
+  margin: 5px 0 5px 5px;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  background-color: #424242;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  padding: 10px;
+}
+
+p.danger {
+  color: #ff0000e6;
+}
+
+input.danger {
+  /* border: 2px red solid; */
+  box-shadow: 10px 10px 15px #ff0000e6;
+}
+
+select.danger {
+  /* border: 2px red solid; */
+  box-shadow: 10px 10px 15px #ff0000e6;
+}
+
+textarea.danger {
+  /* border: 2px red solid; */
+  box-shadow: 10px 10px 15px #ff0000e6;
+}
+
+.chosenLabel {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.listChosen {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chosenChild {
+  display: inline;
+  color: white;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 20px;
+}
+
+.chosenDelete {
+  border: none;
+  border-radius: 5px;
+  background-color: #ff0000e6;
+  color: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  margin-right: 20px;
+  transition: 0.3s;
+}
+
+.chosenDelete:hover {
+  background-color: #db5959e6;
+}
+
+.createButton {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #424242;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}
+
+.disabledCreate {
+  color: rgb(135, 135, 135);
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+  background-color: #424242;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}
+
+.createButton:hover {
+  background-color: gray;
+}
+
+.backButtonContainer {
+  margin-bottom: 10px;
+}
+
+.backButton {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #424242;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}
+
+.backButton:hover {
+  background-color: gray;
+}

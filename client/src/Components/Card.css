@@ -1,0 +1,176 @@
+:root {
+  --surface-color: #424242;
+  --curve: 40;
+}
+
+.card {
+  width: 30%;
+  margin: 10px;
+  border-radius: 18px;
+  background: rgba(21, 21, 21, 0.879);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  font-family: roboto;
+  text-align: center;
+
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
+  height: auto;
+}
+
+.button-container {
+  display: inline-block;
+  position: relative;
+}
+
+.button-container button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #8f0005;
+  border: 0;
+  border-radius: 1.5em;
+  color: white;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  display: inline-block;
+  background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%);
+}
+
+.contentBox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-radius: calc(var(--curve) * 1px);
+  background-color: var(--surface-color);
+  transform: translateY(100%);
+  transition: 0.2s ease-in-out;
+}
+
+.card:hover .contentBox {
+  transform: translateY(0);
+}
+
+.cardHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+  border-radius: calc(var(--curve) * 1px) 0 0 0;
+  background-color: var(--surface-color);
+  transform: translateY(-100%);
+  transition: 0.2s ease-in-out;
+}
+
+.card__arc {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  z-index: 1;
+}
+
+.card__arc path {
+  fill: var(--surface-color);
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+}
+
+.card:hover .cardHeader {
+  transform: translateY(0);
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card__title {
+  font-size: 2em;
+  margin: 0 0 0.3em;
+  color: white;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";
+  font-size: 0.8em;
+  color: #424242;
+}
+
+.card__description {
+  padding: 0 2em 2em;
+  margin: 0;
+  color: #424242;
+  font-family: "MockFlowFont";
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+/*  */
+
+.navLinkCard {
+  color: rgb(255, 255, 255);
+}
+
+.genreTitle {
+  color: rgb(255, 255, 255);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 1.5em;
+}
+
+.genresList {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.genreList {
+  color: rgb(134, 131, 131);
+  border-right: rgb(134, 131, 131) solid 1px;
+  padding-right: 5px;
+  margin-left: 5px;
+}
+
+.detailCard {
+  margin-bottom: 5px;
+}
+
+.cardDetails {
+  border-radius: 5px;
+  background-color: #424242;
+  color: white;
+  border: none;
+  padding: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}
+
+.cardDetails:hover {
+  background-color: gray;
+}
