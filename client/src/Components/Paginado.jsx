@@ -22,7 +22,7 @@ export default function Paginado({
             onClick={(e) => prevNext(e)}
             className={`${currentPage === 1 ? "disabled" : "number"}`}
           >
-            Anterior
+            {"<"}
           </button>
         )}
         {pageNumber?.map((page) => {
@@ -45,7 +45,7 @@ export default function Paginado({
               currentPage === pageNumber.length ? "disabled" : "number"
             }`}
           >
-            Siguiente
+            {">"}
           </button>
         )}
       </ul>

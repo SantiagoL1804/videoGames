@@ -1,46 +1,195 @@
-body {
-}
-
-.hero {
-  /* background-image: url("https://img.freepik.com/free-photo/modern-futuristic-sci-fi-background_35913-2152.jpg?w=1380&t=st=1669840413~exp=1669841013~hmac=7f45b99a8456f238c42f39f24732ac405b9d45b7a25fc914933313bd33c9f7f0");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 150%;
-  background-attachment: fixed; */
-  height: 100vh;
+.Landing {
+  margin: 0px;
+  padding: 0px;
   width: 100%;
-  position: relative;
-  padding: 0;
-  flex-direction: column;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  transition: 4s;
+  background: url("../images/mw2.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation-name: animate;
+  animation-direction: alternate-reverse;
+  animation-duration: 25s;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-timing-function: ease-in-out;
+  user-select: none;
 }
-
-.content h1 {
-}
-.content img {
-  width: 30%;
-  height: auto;
-}
-
-.backVideo {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-}
-
-@media (min-aspect-ratio: 16/9) {
-  .backVideo {
-    width: 100%;
-    height: auto;
+@keyframes animate {
+  0% {
+    background: url("../images/mw2.jpg") no-repeat;
+    background-size: cover;
+  }
+  33% {
+    background: url("../images/needForSpeed.jpg") no-repeat;
+    background-size: cover;
+  }
+  66% {
+    background: url("../images/mario.jpg") no-repeat;
+    background-size: cover;
   }
 }
 
-@media (max-aspect-ratio: 16/9) {
-  .backVideo {
-    width: auto;
-    height: 100%;
+.topspace {
+  height: 20%;
+}
+.TextandButton {
+  display: flex;
+  height: 50%;
+  width: 25%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+.firsttext {
+  padding-bottom: 20px;
+}
+
+.firsttext,
+.btncointainer {
+  height: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Maintext {
+  font-size: 60px;
+}
+
+.joinbtn {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 45px;
+  padding-right: 45px;
+  background: radial-gradient(
+    circle,
+    rgba(77, 74, 74, 1) 8%,
+    rgba(25, 25, 25, 1) 100%
+  );
+  border-width: 3px;
+  border-style: solid;
+  border-color: white;
+  transition: all 400ms ease;
+  cursor: pointer;
+}
+.joinbtn:hover {
+  animation: rainbow 5s linear infinite;
+  color: transparent;
+  border-color: transparent;
+  transition: all 250ms ease;
+}
+
+@keyframes rainbow {
+  0% {
+    color: #ff0000;
+    border-color: #ff0000;
+  }
+  16.67% {
+    color: #ff7f00;
+    border-color: #ff7f00;
+  }
+  33.33% {
+    color: #ffff00;
+    border-color: #ffff00;
+  }
+  50% {
+    color: #00ff00;
+    border-color: #00ff00;
+  }
+  66.67% {
+    color: #0000ff;
+    border-color: #0000ff;
+  }
+  83.33% {
+    color: #8b00ff;
+    border-color: #8b00ff;
+  }
+  100% {
+    color: #ff0000;
+    border-color: #ff0000;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+a {
+  color: white;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.landingdivImg {
+  background-color: #2b3036;
+  border-radius: 50%;
+  width: 83%;
+  height: 60%;
+  margin-left: 25px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.landingdivImg:hover {
+  transform: translateY(-6px);
+}
+
+@media (max-width: 450px) {
+  .about,
+  .ourteam,
+  .topspace {
+    display: none;
+  }
+  .Landing {
+    display: flex;
+    justify-content: center;
+    background: url("../images/mw2.jpg") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    animation: none;
+    animation-play-state: paused;
+  }
+
+  .TextandButton {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .firsttext,
+  .secondarytext,
+  .btncointainer,
+  .Maintext,
+  .Secondtext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33%;
+    width: 100%;
+    padding: 0px;
   }
 }

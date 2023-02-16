@@ -15,11 +15,11 @@ import Card from "./Card";
 import { NavLink } from "react-router-dom";
 import Paginado from "./Paginado";
 import Searchbar from "./Searchbar";
-import doctor from "../images/doctor.gif";
+import waiting from "../images/sonica-waiting.gif";
 import logo from "../images/logo.png";
 
-export default function Home(props) {
-  const [games, setGames] = useState();
+export default function Home() {
+  const [games, setGames] = useState([]);
   const [order, setOrder] = useState("");
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames);
@@ -194,7 +194,7 @@ export default function Home(props) {
           alert("No se encontró ningún juego con ese nombre")
         ) : (
           <div>
-            <img className="doctorSearching" src={doctor} alt=""></img>
+            <img className="doctorSearching" src={waiting} alt=""></img>
           </div>
         )}
       </div>
