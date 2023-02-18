@@ -82,7 +82,6 @@ router.post("/", async (req, res) => {
       genres,
     } = req.body;
 
-
     let videogameCreated = await Videogame.create({
       name,
       description,
@@ -98,7 +97,7 @@ router.post("/", async (req, res) => {
     //Debo encontrar en mi modelo de generos, todos los que coincidan con lo que llega por body
 
     let genresDb = await Genre.findAll({ where: { name: genres } });
-
+    console.log("hola");
     await videogameCreated.addGenre(genresDb);
     res.status(200).send("Videojuego creado!");
   } catch (error) {
