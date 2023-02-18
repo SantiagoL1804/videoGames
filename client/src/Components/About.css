@@ -1,0 +1,170 @@
+.aboutContainer {
+  background: rgb(77, 74, 74);
+  background: radial-gradient(
+    circle,
+    rgba(77, 74, 74, 1) 8%,
+    rgba(25, 25, 25, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 900px;
+}
+
+/* .about {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+} */
+
+.about {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  background: rgba(77, 74, 74, 1);
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.rgb::after {
+  content: "";
+  background: linear-gradient(
+      45deg,
+      #ff0000 0%,
+      #ff9a00 10%,
+      #d0de21 20%,
+      #4fdc4a 30%,
+      #3fdad8 40%,
+      #2fc9e2 50%,
+      #1c7fee 60%,
+      #5f15f2 70%,
+      #ba0cf8 80%,
+      #fb07d9 90%,
+      #ff0000 100%
+    )
+    repeat 0% 0% / 300% 100%;
+  position: absolute;
+  inset: -3px;
+  border-radius: 10px;
+  filter: blur(8px);
+  transform: translateZ(-1px);
+  /* z-index: -1; */
+  animation: rgb 6s linear infinite;
+}
+@keyframes rgb {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.about li {
+  list-style-type: none;
+}
+
+.aboutMainTitle {
+  color: white;
+}
+
+.aboutTitle {
+  color: white;
+}
+
+.aboutImage {
+  width: 200px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  border-radius: 50%;
+}
+
+.aboutItemsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-left: 90px;
+}
+
+.aboutList {
+  display: flex;
+  justify-content: center;
+}
+
+.aboutSection {
+  display: flex;
+  justify-content: center;
+}
+
+.aboutLabel {
+  color: white;
+  margin: 10px;
+}
+
+.aboutContent {
+  color: rgb(206, 206, 206);
+  margin: 10px;
+}
+
+.aboutUl {
+  color: rgb(206, 206, 206);
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5px;
+  margin-top: 11px;
+  max-width: 300px;
+}
+
+.aboutLi {
+  margin-right: 5px;
+}
+
+.aboutUlNetwork {
+  color: rgb(206, 206, 206);
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5px;
+  margin-top: 11px;
+  width: auto;
+}
+
+.aboutLiNetwork {
+  margin-right: 5px;
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.descriptionContainer {
+  margin: 15px 10px 10px 10px;
+}
+
+.backButtonContainerAbout {
+  margin-bottom: 10px;
+}
+
+.backButtonAbout {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #424242;
+  font-size: 1.5em;
+  margin: 20px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+}
+
+.backButtonAbout:hover {
+  background-color: gray;
+}
