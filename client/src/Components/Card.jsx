@@ -6,6 +6,7 @@ export default function Card({
   name,
   image,
   genres,
+  apiId,
   key,
   id,
   created,
@@ -34,16 +35,20 @@ export default function Card({
         <div className="genresBox">
           {genres.length ? <h3 className="genreTitle">Géneros</h3> : <br></br>}
           <ul className="genresList">
-            {genres?.map((genre) => (
-              <li className="genreList">{genre}</li>
-            ))}
+            {genres?.map((genre, index, array) =>
+              index + 1 !== array.length ? (
+                <li className="genreList">{genre} |</li>
+              ) : (
+                <li className="genreList">{genre}</li>
+              )
+            )}
           </ul>
         </div>
         <div className="detailCard">
           <NavLink
             className="navLinkCard"
             style={{ textDecoration: "none" }}
-            to={`/gameDetail/${id}`}
+            to={created === true ? `/gameDetail/${id}` : `/gameDetail/${apiId}`}
           >
             <button className="cardDetails">Detalles</button>
           </NavLink>

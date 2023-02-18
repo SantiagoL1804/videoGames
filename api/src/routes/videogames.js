@@ -14,11 +14,12 @@ const getDbData = async () => {
         attributes: ["name"],
         through: { attributes: [] },
       },
-      attributes: ["id", "name", "image", "created", "rating"],
+      attributes: ["id", "name", "image", "created", "rating", "apiId"],
     });
     const vgGenres = videogamesDb?.map((game) => {
       return {
         id: game.id,
+        apiId: game.apiId,
         name: game.name,
         rating: game.rating,
         description: game.description,
@@ -91,8 +92,8 @@ router.get("/", async (req, res) => {
       let videogameName = allData.filter((game) =>
         game.name.toLowerCase().includes(name.toLowerCase())
       );
-      if (!videogameName.length)
-        res.status(404).send("No se encontró ningún videojuego con ese nombre");
+      // if (!videogameName.length)
+      //   res.status(404).send("No se encontró ningún videojuego con ese nombre");
       return res.status(200).json(videogameName);
     } catch (error) {
       return res.status(404).send(error.message);

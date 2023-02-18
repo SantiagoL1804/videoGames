@@ -5,14 +5,14 @@ const router = Router();
 const axios = require("axios");
 const APIKEY = process.env.YOUR_API_KEY;
 
-router.get("/:idVideogame", async (req, res) => {
-  const { idVideogame } = req.params;
-  //console.log(idVideogame)
+router.get("/:videogameId", async (req, res) => {
+  const { videogameId } = req.params;
   //verifico si es un juego creado y me trae el detalle de la BASE DE DATOS
-  if (idVideogame.includes("-")) {
+  if (videogameId.includes("-")) {
+    console.log("1");
     let videogameDb = await Videogame.findOne({
       where: {
-        id: idVideogame,
+        id: videogameId,
       },
       include: Genre,
       attributes: { exclude: ["createdAt", "updatedAt"] },
@@ -27,10 +27,12 @@ router.get("/:idVideogame", async (req, res) => {
   } else {
     //AHORA COMO NO ESTABA EN BASE DE DATOS BUSCO EN API
     try {
+      console.log("2");
       const response = await axios.get(
-        `https://api.rawg.io/api/games/${idVideogame}?key=${APIKEY}`,
+        `https://api.rawg.io/api/games/${videogameId}?key=${APIKEY}`,
         { headers: { "Accept-Encoding": "null" } }
       );
+      console.log("2,5");
       let {
         id,
         name,
@@ -46,6 +48,11 @@ router.get("/:idVideogame", async (req, res) => {
       platforms = platforms?.map((p) => p.platform.name); // LO MISMO DE ARRIBA PERO CON PLATAFORMAS
 
       //CONVIERTO TODO A JSON CON SOLAMENTE LOS CAMPOS QUE ME PIDIERON Y LO RETORNO
+      console.log("3");
+      await Videogame.update(
+        { description, platforms },
+        { where: { apiId: videogameId } }
+      );
       return res.json({
         id,
         name,
@@ -57,7 +64,7 @@ router.get("/:idVideogame", async (req, res) => {
         platforms,
       });
     } catch (err) {
-      return console.log(err);
+      throw new Error(err);
     }
   }
 });

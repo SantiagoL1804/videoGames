@@ -8,7 +8,17 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 1000px;
 }
+
+/* .detail {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+} */
 
 .detail {
   display: block;
@@ -16,7 +26,47 @@
   margin-right: auto;
   width: 60%;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  background: rgba(77, 74, 74, 1);
   border-radius: 10px;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.rgb::after {
+  content: "";
+  background: linear-gradient(
+      45deg,
+      #ff0000 0%,
+      #ff9a00 10%,
+      #d0de21 20%,
+      #4fdc4a 30%,
+      #3fdad8 40%,
+      #2fc9e2 50%,
+      #1c7fee 60%,
+      #5f15f2 70%,
+      #ba0cf8 80%,
+      #fb07d9 90%,
+      #ff0000 100%
+    )
+    repeat 0% 0% / 300% 100%;
+  position: absolute;
+  inset: -3px;
+  border-radius: 10px;
+  filter: blur(8px);
+  transform: translateZ(-1px);
+  /* z-index: -1; */
+  animation: rgb 6s linear infinite;
+}
+@keyframes rgb {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .detail li {
@@ -35,6 +85,14 @@
   width: 90%;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   border-radius: 10px;
+}
+
+.detailItemsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-left: 90px;
 }
 
 .detailList {
@@ -59,7 +117,15 @@
 
 .detailUl {
   color: rgb(206, 206, 206);
-  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5px;
+  margin-top: 11px;
+  max-width: 300px;
+}
+
+.detailLi {
+  margin-right: 5px;
 }
 
 .descriptionContainer {

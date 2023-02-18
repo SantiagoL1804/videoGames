@@ -8,10 +8,9 @@ export const POST_VIDEOGAME = "POST_VIDEOGAME";
 export const DELETE_VIDEOGAME = "DELETE_VIDEOGAME";
 export const CLEAN_VIDEOGAME_DETAIL = "CLEAN_VIDEOGAME_DETAIL";
 export const GET_VIDEOGAMES_BY_NAME = "GET_VIDEOGAMES_BY_NAME";
-export const SORT_VIDEOGAMES = "SORT_VIDEOGAMES";
+export const SORT_VIDEOGAMES_ALPHA = "SORT_VIDEOGAMES_ALPHA";
 export const SORT_VIDEOGAMES_RATING = "SORT_VIDEOGAMES_RATING";
-export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
-export const FILTER_BY_API_OR_CREATED = "FILTER_BY_API_OR_CREATED";
+export const FILTER_BY = "FILTER_BY";
 export const CLEAN = "CLEAN";
 
 //--ACCIONES GET--
@@ -38,13 +37,10 @@ export const getVideogameByName = (name) => {
       let response = await axios.get(
         `http://localhost:3001/videogames?name=${name}`
       );
+      console.log("search", response.data);
       return dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: response.data });
     } catch (error) {
-      console.log(error.response);
-      return dispatch({
-        type: GET_VIDEOGAMES_BY_NAME,
-        payload: error.response.data,
-      });
+      throw new Error(error);
     }
   };
 };
@@ -90,16 +86,12 @@ export const cleanDetail = () => {
 
 //--ACCIONES FILTER Y SORT--
 
-export const filterByGenre = (payload) => {
-  return { type: FILTER_BY_GENRE, payload };
+export const filterBy = (genres, origin) => {
+  return { type: FILTER_BY, payload: { genres, origin } };
 };
 
-export const filterByApiOrCreated = (payload) => {
-  return { type: FILTER_BY_API_OR_CREATED, payload };
-};
-
-export const sortVideogames = (payload) => {
-  return { type: SORT_VIDEOGAMES, payload };
+export const sortVideogamesAlpha = (payload) => {
+  return { type: SORT_VIDEOGAMES_ALPHA, payload };
 };
 
 export const sortVideogamesRating = (payload) => {

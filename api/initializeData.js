@@ -32,6 +32,7 @@ const loadAllAssets = async () => {
 
           let videogameCreated = await Videogame.create({
             id: uuidv4(),
+            apiId: game.id,
             name: game.name,
             description: "",
             released: game.released,

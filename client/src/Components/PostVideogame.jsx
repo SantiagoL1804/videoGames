@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postVideogame, getGenres, getPlatforms } from "../actions";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./PostVideogame.css";
 import creed from "../images/creed.jpg";
 
 const PostVideogame = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const videogames = useSelector((state) => state.videogames);
   const genres = useSelector((state) => state.genres);
   const platforms = useSelector((state) => state.platforms);
@@ -116,7 +117,9 @@ const PostVideogame = () => {
       platforms: [],
     });
     alert(`${input.name} fue creado con exito!`);
+    history.push("/home");
   };
+
   console.log(input);
 
   return (

@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Home.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getVideogames,
-  sortVideogames,
-  sortVideogamesRating,
   getGenres,
-  filterByGenre,
-  filterByApiOrCreated,
+  sortVideogamesAlpha,
+  sortVideogamesRating,
+  filterBy,
   deleteVideogame,
 } from "../actions";
 import Card from "./Card";
@@ -16,17 +15,23 @@ import { NavLink } from "react-router-dom";
 import Paginado from "./Paginado";
 import Searchbar from "./Searchbar";
 import waiting from "../images/sonica-waiting.gif";
+import isaac from "../images/isaac.gif";
 import logo from "../images/logo.png";
 
 export default function Home() {
-  const [games, setGames] = useState([]);
-  const [order, setOrder] = useState("");
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames);
   const genres = useSelector((state) => state.genres);
+  const [filterPanel, setFilterPanel] = useState({
+    genres: "none",
+    origin: "none",
+    rating: "none",
+    alphabetic: "none",
+  });
+  const initialLoad = useRef(true);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [gamesPerPage, setGamesPerPage] = useState(15);
+  const [gamesPerPage, setGamesPerPage] = useState(12);
   const indexLastGame = currentPage * gamesPerPage;
   const indexFirstGame = indexLastGame - gamesPerPage;
   const currentGames = videogames.slice(indexFirstGame, indexLastGame);
@@ -45,44 +50,37 @@ export default function Home() {
     }
   };
 
-  console.log(currentPage);
-  // const videogamesPosted = useSelector((state) => state.videogamesPosted);
-
   console.log(genres);
   let genresNames = genres?.map((g) => g.name);
   let sortGenreNames = genresNames.sort();
 
   useEffect(() => {
-    setGames(videogames);
-    dispatch(getGenres());
+    if (initialLoad.current) {
+      dispatch(getGenres());
 
-    dispatch(getVideogames());
-  }, [dispatch]);
+      dispatch(getVideogames());
+      initialLoad.current = false;
+      return;
+    }
+    setCurrentPage(1);
+    dispatch(filterBy(filterPanel.genres, filterPanel.origin));
+    dispatch(sortVideogamesAlpha(filterPanel.alphabetic));
+    dispatch(sortVideogamesRating(filterPanel.rating));
+    setCurrentPage(1);
+  }, [dispatch, filterPanel]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  const handleFiltersChange = (e) => {
+    setFilterPanel({ ...filterPanel, [e.target.name]: e.target.value });
+    setCurrentPage(1);
+  };
 
   const refreshHandler = (e) => {
     e.preventDefault();
     dispatch(getVideogames());
-  };
-
-  const sortHandler = (e) => {
-    e.preventDefault();
-    dispatch(sortVideogames(e.target.value));
-    setCurrentPage(1);
-    setOrder(`Ordenado ${e.target.value}`);
-  };
-
-  const sortRatingHandler = (e) => {
-    e.preventDefault();
-    dispatch(sortVideogamesRating(e.target.value));
-    setCurrentPage(1);
-    setOrder(`Ordenado ${e.target.value}`);
-  };
-
-  const filterHandlerGenre = (e) => {
-    dispatch(filterByGenre(e.target.value));
-  };
-  const filterCreated = (e) => {
-    dispatch(filterByApiOrCreated(e.target.value));
   };
 
   const deleteHandler = (e) => {
@@ -127,16 +125,26 @@ export default function Home() {
           <div className="sortsHome">
             <h3>Ordenar por: </h3>
 
-            <select onChange={(e) => sortHandler(e)} name="" id="">
-              <option selected="true" disabled="disabled">
+            <select
+              onChange={(e) => handleFiltersChange(e)}
+              name="alphabetic"
+              id=""
+              value={filterPanel.alphabetic}
+            >
+              <option value="none" selected="true" disabled="disabled">
                 Alfabético...
               </option>
               <option value="asc">a - z</option>
               <option value="desc">z - a</option>
             </select>
 
-            <select onChange={(e) => sortRatingHandler(e)} name="" id="">
-              <option selected="true" disabled="disabled">
+            <select
+              onChange={(e) => handleFiltersChange(e)}
+              name="rating"
+              id=""
+              value={filterPanel.rating}
+            >
+              <option value="none" selected="true" disabled="disabled">
                 Rating...
               </option>
               <option value="asc">Menor a mayor</option>
@@ -146,21 +154,31 @@ export default function Home() {
           <div className="filtersHome">
             <h3>Filtrar por: </h3>
 
-            <select onChange={(e) => filterHandlerGenre(e)} name="" id="">
-              <option selected="true" disabled="disabled">
+            <select
+              onChange={(e) => handleFiltersChange(e)}
+              name="genres"
+              id=""
+              value={filterPanel.genres}
+            >
+              <option value="none" selected="true" disabled="disabled">
                 Género...
               </option>
-              <option value="All">Todos</option>
+              <option value="none">Todos</option>
               {sortGenreNames?.map((g) => {
                 return <option value={`${g}`}>{g}</option>;
               })}
             </select>
 
-            <select onChange={(e) => filterCreated(e)} name="" id="">
-              <option selected="true" disabled="disabled">
+            <select
+              value={filterPanel.origin}
+              onChange={(e) => handleFiltersChange(e)}
+              name="origin"
+              id=""
+            >
+              <option value="none" selected="true" disabled="disabled">
                 Origen...
               </option>
-              <option value="All">Todos</option>
+              <option value="none">Todos</option>
               <option value="api">Existentes</option>
               <option value="created">Creados</option>
             </select>
@@ -168,30 +186,30 @@ export default function Home() {
         </div>
       </div>
       <div className="cardsContainer">
-        {typeof currentGames === "object" && currentGames.length ? (
+        {currentGames.length > 0 && currentGames[0] !== null ? (
           currentGames?.map((game) => {
-            if (typeof game === "string") {
-              return undefined;
-            } else {
-              return (
-                <Card
-                  name={game.name}
-                  image={game.image}
-                  genres={game.genres}
-                  key={game.id}
-                  id={game.id}
-                  created={game.created}
-                  deleteHandler={deleteHandler}
-                />
-              );
-            }
+            // if (typeof game === "string") {
+            //   return undefined;
+            // } else {
+            return (
+              <Card
+                name={game.name}
+                apiId={game.apiId}
+                image={game.image}
+                genres={game.genres}
+                key={game.id}
+                id={game.id}
+                created={game.created}
+                deleteHandler={deleteHandler}
+              />
+            );
+            // }
           })
-        ) : typeof currentGames === "string" ? ( // si no hay juegos en el estado global, muestra un mensaje de error
-          // <div>
-
-          //   <p>No se encontró ningún juego</p>
-          // </div>
-          alert("No se encontró ningún juego con ese nombre")
+        ) : currentGames.length > 0 && currentGames[0] === null ? ( // si no hay juegos en el estado global, muestra un mensaje de error
+          <div className="notFound">
+            <p>No se encontró ningún juego</p>
+            <img className="doctorSearching" src={isaac} alt=""></img>
+          </div>
         ) : (
           <div>
             <img className="doctorSearching" src={waiting} alt=""></img>
@@ -199,13 +217,17 @@ export default function Home() {
         )}
       </div>
 
-      <Paginado
-        videogames={videogames.length}
-        gamesPerPage={gamesPerPage}
-        paginado={paginado}
-        prevNext={prevNext}
-        currentPage={currentPage}
-      />
+      {videogames.length > gamesPerPage ? (
+        <Paginado
+          videogames={videogames.length}
+          gamesPerPage={gamesPerPage}
+          paginado={paginado}
+          prevNext={prevNext}
+          currentPage={currentPage}
+        />
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
