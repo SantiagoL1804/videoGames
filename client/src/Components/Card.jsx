@@ -7,7 +7,6 @@ export default function Card({
   image,
   genres,
   apiId,
-  key,
   id,
   created,
   deleteHandler,
