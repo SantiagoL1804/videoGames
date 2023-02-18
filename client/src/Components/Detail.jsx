@@ -9,7 +9,6 @@ import waiting from "../images/sonica-waiting.gif";
 export default function Detail(props) {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.videogameDetail);
-  console.log(detail);
 
   useEffect(() => {
     dispatch(getVideogameDetail(props.match.params.id));

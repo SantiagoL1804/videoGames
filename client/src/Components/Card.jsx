@@ -13,7 +13,7 @@ export default function Card({
   deleteHandler,
 }) {
   return (
-    <div className="card" key={key}>
+    <div className="card" key={id}>
       <div className="button-container">
         {created ? (
           <button value={id} onClick={(e) => deleteHandler(e)}>
@@ -24,7 +24,7 @@ export default function Card({
       </div>
       <div className="contentBox">
         <div className="cardHeader">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+          <svg className="card__arc" xmlns="http://www.w3.org/2000/svg">
             <path />
           </svg>
 

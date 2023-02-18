@@ -36,47 +36,11 @@ const getDbData = async () => {
   }
 };
 
-//Creo una funcion que trae los primeros 100 juegos de la api
-// const getApiData = async () => {
-//   try {
-//     let apiResponse = await axios.get(
-//       `https://api.rawg.io/api/games?key=${APIKEY}`,
-//       { headers: { "Accept-Encoding": "null" } }
-//     );
-
-//     let apiDataLimited = []; //Array vacia donde voy agregando juegos de cada paginado de la api hasta llegar a 100
-
-//     while (apiDataLimited.length <= 100) {
-//       let apiVidgames = apiResponse.data.results?.map((game) => {
-//         return {
-//           id: game.id,
-//           name: game.name,
-//           rating: game.rating,
-//           image: game.background_image,
-//           genres: game.genres?.map((genre) => genre.name),
-//         };
-//       });
-//       // console.log(apiVidgames);
-//       apiDataLimited = [...apiDataLimited, ...apiVidgames]; //Voy agregando los juegos que voy encontrando a la array con los que ya encontre
-//       apiResponse = await axios.get(apiResponse.data.next, {
-//         headers: { "Accept-Encoding": "null" },
-//       });
-//     }
-//     return apiDataLimited;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 const getAllVideogames = async () => {
   //Guardo los juegos que me retornan las funciones
   let dbData = await getDbData();
-  // let apiData = await getApiData();
-
-  // let allData = dbData.concat(apiData).slice(0, 100);
 
   //Corto los juegos en 100 luego de juntar los de la base de datos con la api, ya que si creo un juego, se excederia de 100 juegos
-  // let allData = [...dbData, ...apiData].slice(0, 100);
   let allData = [...dbData].slice(0, 100);
   return allData;
 };
@@ -92,8 +56,6 @@ router.get("/", async (req, res) => {
       let videogameName = allData.filter((game) =>
         game.name.toLowerCase().includes(name.toLowerCase())
       );
-      // if (!videogameName.length)
-      //   res.status(404).send("No se encontró ningún videojuego con ese nombre");
       return res.status(200).json(videogameName);
     } catch (error) {
       return res.status(404).send(error.message);
@@ -120,7 +82,6 @@ router.post("/", async (req, res) => {
       genres,
     } = req.body;
 
-    console.log("generos para juego creado", genres);
 
     let videogameCreated = await Videogame.create({
       name,
@@ -137,8 +98,6 @@ router.post("/", async (req, res) => {
     //Debo encontrar en mi modelo de generos, todos los que coincidan con lo que llega por body
 
     let genresDb = await Genre.findAll({ where: { name: genres } });
-
-    // let genreNames = genresDb?.map((genre) => genre.name);
 
     await videogameCreated.addGenre(genresDb);
     res.status(200).send("Videojuego creado!");

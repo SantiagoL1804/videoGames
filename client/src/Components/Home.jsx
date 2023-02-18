@@ -50,7 +50,6 @@ export default function Home() {
     }
   };
 
-  console.log(genres);
   let genresNames = genres?.map((g) => g.name);
   let sortGenreNames = genresNames.sort();
 
@@ -131,7 +130,7 @@ export default function Home() {
               id=""
               value={filterPanel.alphabetic}
             >
-              <option value="none" selected="true" disabled="disabled">
+              <option value="none" defaultValue={true} disabled="disabled">
                 Alfabético...
               </option>
               <option value="asc">a - z</option>
@@ -144,7 +143,7 @@ export default function Home() {
               id=""
               value={filterPanel.rating}
             >
-              <option value="none" selected="true" disabled="disabled">
+              <option value="none" defaultValue={true} disabled="disabled">
                 Rating...
               </option>
               <option value="asc">Menor a mayor</option>
@@ -160,7 +159,7 @@ export default function Home() {
               id=""
               value={filterPanel.genres}
             >
-              <option value="none" selected="true" disabled="disabled">
+              <option value="none" defaultValue={true} disabled="disabled">
                 Género...
               </option>
               <option value="none">Todos</option>
@@ -175,7 +174,7 @@ export default function Home() {
               name="origin"
               id=""
             >
-              <option value="none" selected="true" disabled="disabled">
+              <option value="none" defaultValue={true} disabled="disabled">
                 Origen...
               </option>
               <option value="none">Todos</option>

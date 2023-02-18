@@ -37,7 +37,6 @@ export const getVideogameByName = (name) => {
       let response = await axios.get(
         `http://localhost:3001/videogames?name=${name}`
       );
-      console.log("search", response.data);
       return dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: response.data });
     } catch (error) {
       throw new Error(error);
@@ -106,7 +105,6 @@ export const deleteVideogame = (id) => {
       let deletedGame = await axios.delete(
         `http://localhost:3001/videogames?id=${id}`
       );
-      console.log(deletedGame);
       return dispatch({
         type: DELETE_VIDEOGAME,
         payload: deletedGame.data,
