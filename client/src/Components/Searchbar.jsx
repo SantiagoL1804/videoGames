@@ -7,6 +7,7 @@ import "./Searchbar.css";
 export default function Searchbar({ videogames }) {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
+  console.log("hola");
 
   // useEffect(() => {
   //   setName("");
