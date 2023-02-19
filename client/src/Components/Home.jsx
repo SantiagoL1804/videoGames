@@ -185,8 +185,8 @@ export default function Home() {
         </div>
       </div>
       <div className="cardsContainer">
-        {currentGames.length > 0 && currentGames[0] !== null ? (
-          currentGames?.map((game) => {
+        {currentGames && currentGames.length > 0 && currentGames[0] !== null ? (
+          currentGames.map((game) => {
             // if (typeof game === "string") {
             //   return undefined;
             // } else {
