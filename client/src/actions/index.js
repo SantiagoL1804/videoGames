@@ -1,4 +1,5 @@
 import axios from "axios";
+const endPoint = process.env.REACT_APP_API || "http://localhost:3001";
 
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const GET_VIDEOGAME_DETAIL = "GET_VIDEOGAME_DETAIL";
@@ -17,7 +18,7 @@ export const CLEAN = "CLEAN";
 
 export const getVideogames = () => {
   return async function (dispatch) {
-    let response = await axios.get("http://localhost:3001/videogames");
+    let response = await axios.get(`${endPoint}/videogames`);
     //con el dispatch toy retornando la data q me traigo con el axios
     return dispatch({ type: GET_VIDEOGAMES, payload: response.data });
   };
@@ -25,7 +26,7 @@ export const getVideogames = () => {
 
 export const getVideogameDetail = (id) => {
   return async function (dispatch) {
-    let response = await axios.get(`http://localhost:3001/videogame/${id}`);
+    let response = await axios.get(`${endPoint}/videogame/${id}`);
 
     return dispatch({ type: GET_VIDEOGAME_DETAIL, payload: response.data });
   };
@@ -34,9 +35,7 @@ export const getVideogameDetail = (id) => {
 export const getVideogameByName = (name) => {
   return async function (dispatch) {
     try {
-      let response = await axios.get(
-        `http://localhost:3001/videogames?name=${name}`
-      );
+      let response = await axios.get(`${endPoint}/videogames?name=${name}`);
       return dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: response.data });
     } catch (error) {
       throw new Error(error);
@@ -46,7 +45,7 @@ export const getVideogameByName = (name) => {
 
 export const getGenres = () => {
   return async function (dispatch) {
-    let data = await axios.get("http://localhost:3001/genres");
+    let data = await axios.get(`${endPoint}/genres`);
 
     return dispatch({ type: GET_GENRES, payload: data.data });
   };
@@ -54,7 +53,7 @@ export const getGenres = () => {
 
 export const getPlatforms = () => {
   return async function (dispatch) {
-    let data = await axios.get("http://localhost:3001/platforms");
+    let data = await axios.get(`${endPoint}/platforms`);
 
     return dispatch({ type: GET_PLATFORMS, payload: data.data });
   };
@@ -65,10 +64,7 @@ export const getPlatforms = () => {
 export const postVideogame = (game) => {
   return async function () {
     try {
-      let postedGame = await axios.post(
-        "http://localhost:3001/videogames",
-        game
-      );
+      let postedGame = await axios.post(`${endPoint}/videogames`, game);
 
       return postedGame;
     } catch (error) {
