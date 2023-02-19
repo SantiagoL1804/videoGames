@@ -19,6 +19,7 @@ export const CLEAN = "CLEAN";
 export const getVideogames = () => {
   return async function (dispatch) {
     let response = await axios.get(`/videogames`);
+    console.log(response.data);
     //con el dispatch toy retornando la data q me traigo con el axios
     return dispatch({ type: GET_VIDEOGAMES, payload: response.data });
   };
