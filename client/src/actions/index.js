@@ -29,7 +29,9 @@ export const getVideogames = () => {
 
 export const getVideogameDetail = (id) => {
   return async function (dispatch) {
-    let response = await axios.get(`/videogame/${id}`);
+    let response = await axios.get(
+      `https://videogames-production-f7fa.up.railway.app/videogame/${id}`
+    );
 
     return dispatch({ type: GET_VIDEOGAME_DETAIL, payload: response.data });
   };
@@ -38,7 +40,9 @@ export const getVideogameDetail = (id) => {
 export const getVideogameByName = (name) => {
   return async function (dispatch) {
     try {
-      let response = await axios.get(`/videogames?name=${name}`);
+      let response = await axios.get(
+        `https://videogames-production-f7fa.up.railway.app/videogames?name=${name}`
+      );
       return dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: response.data });
     } catch (error) {
       throw new Error(error);
@@ -58,7 +62,9 @@ export const getGenres = () => {
 
 export const getPlatforms = () => {
   return async function (dispatch) {
-    let data = await axios.get(`/platforms`);
+    let data = await axios.get(
+      `https://videogames-production-f7fa.up.railway.app/platforms`
+    );
 
     return dispatch({ type: GET_PLATFORMS, payload: data.data });
   };
@@ -69,7 +75,10 @@ export const getPlatforms = () => {
 export const postVideogame = (game) => {
   return async function () {
     try {
-      let postedGame = await axios.post(`/videogames`, game);
+      let postedGame = await axios.post(
+        `https://videogames-production-f7fa.up.railway.app/videogames`,
+        game
+      );
 
       return postedGame;
     } catch (error) {
@@ -104,7 +113,7 @@ export const deleteVideogame = (id) => {
   return async function (dispatch) {
     try {
       let deletedGame = await axios.delete(
-        `http://localhost:3001/videogames?id=${id}`
+        `https://videogames-production-f7fa.up.railway.app/videogames?id=${id}`
       );
       return dispatch({
         type: DELETE_VIDEOGAME,
