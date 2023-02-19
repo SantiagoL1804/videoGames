@@ -46,6 +46,7 @@ export default function Home() {
     setCurrentPage(1);
     if (genres && genres.length > 0)
       setGenresLocal(genres.map((g) => g.name).sort());
+    console.log(videogames, genres);
   }, [dispatch, filterPanel, genres]);
 
   const [currentPage, setCurrentPage] = useState(1);
