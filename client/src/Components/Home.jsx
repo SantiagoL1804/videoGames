@@ -22,6 +22,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames);
   const genres = useSelector((state) => state.genres);
+  const [genresLocal, setGenresLocal] = useState([]);
   const [filterPanel, setFilterPanel] = useState({
     genres: "none",
     origin: "none",
@@ -29,6 +30,23 @@ export default function Home() {
     alphabetic: "none",
   });
   const initialLoad = useRef(true);
+
+  useEffect(() => {
+    if (initialLoad.current) {
+      dispatch(getGenres());
+
+      dispatch(getVideogames());
+      initialLoad.current = false;
+      return;
+    }
+    setCurrentPage(1);
+    dispatch(filterBy(filterPanel.genres, filterPanel.origin));
+    dispatch(sortVideogamesAlpha(filterPanel.alphabetic));
+    dispatch(sortVideogamesRating(filterPanel.rating));
+    setCurrentPage(1);
+    if (genres && genres.length > 0)
+      setGenresLocal(genres.map((g) => g.name).sort());
+  }, [dispatch, filterPanel, genres]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage, setGamesPerPage] = useState(12);
@@ -49,24 +67,6 @@ export default function Home() {
       setCurrentPage(currentPage + 1);
     }
   };
-
-  let genresNames = genres && genres.length > 0 && genres.map((g) => g.name);
-  let sortGenreNames = genresNames.sort();
-
-  useEffect(() => {
-    if (initialLoad.current) {
-      dispatch(getGenres());
-
-      dispatch(getVideogames());
-      initialLoad.current = false;
-      return;
-    }
-    setCurrentPage(1);
-    dispatch(filterBy(filterPanel.genres, filterPanel.origin));
-    dispatch(sortVideogamesAlpha(filterPanel.alphabetic));
-    dispatch(sortVideogamesRating(filterPanel.rating));
-    setCurrentPage(1);
-  }, [dispatch, filterPanel]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -163,7 +163,7 @@ export default function Home() {
                 Género...
               </option>
               <option value="none">Todos</option>
-              {sortGenreNames?.map((g) => {
+              {genresLocal?.map((g) => {
                 return <option value={`${g}`}>{g}</option>;
               })}
             </select>
