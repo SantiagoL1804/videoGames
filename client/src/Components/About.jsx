@@ -38,12 +38,16 @@ export default function About() {
           <div className="aboutList">
             <h4 className="aboutLabel">Mis redes: </h4>
             <ul className="aboutUlNetwork">
-              <li className="aboutLiNetwork">
-                https://www.linkedin.com/in/santiago-larrique/
-              </li>
-              <li className="aboutLiNetwork">
-                https://github.com/SantiagoL1804
-              </li>
+              <NavLink to="https://www.linkedin.com/in/santiago-larrique/">
+                <li className="aboutLiNetwork">
+                  https://www.linkedin.com/in/santiago-larrique/
+                </li>
+              </NavLink>
+              <NavLink to="https://github.com/SantiagoL1804">
+                <li className="aboutLiNetwork">
+                  https://github.com/SantiagoL1804
+                </li>
+              </NavLink>
             </ul>
           </div>
         </div>
