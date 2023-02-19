@@ -43,11 +43,11 @@ export default function About() {
                   https://www.linkedin.com/in/santiago-larrique/
                 </li>
               </NavLink>
-              <NavLink to="https://github.com/SantiagoL1804">
+              <a href="https://github.com/SantiagoL1804">
                 <li className="aboutLiNetwork">
                   https://github.com/SantiagoL1804
                 </li>
-              </NavLink>
+              </a>
             </ul>
           </div>
         </div>
