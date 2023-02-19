@@ -19,7 +19,7 @@ export const CLEAN = "CLEAN";
 export const getVideogames = () => {
   return async function (dispatch) {
     let response = await axios.get(
-      `http://videogames-production-f7fa.up.railway.app/videogames`
+      `https://videogames-production-f7fa.up.railway.app/videogames`
     );
     console.log(response.data);
     //con el dispatch toy retornando la data q me traigo con el axios
@@ -49,7 +49,7 @@ export const getVideogameByName = (name) => {
 export const getGenres = () => {
   return async function (dispatch) {
     let data = await axios.get(
-      `http://videogames-production-f7fa.up.railway.app/genres`
+      `https://videogames-production-f7fa.up.railway.app/genres`
     );
 
     return dispatch({ type: GET_GENRES, payload: data.data });
