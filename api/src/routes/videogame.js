@@ -43,7 +43,7 @@ router.get("/:videogameId", async (req, res) => {
         rating,
         platforms,
       } = response.data;
-      //console.log(response.data)
+      console.log("chau");
       genres = genres?.map((g) => g.name); // ACA MODIFICO EL ARRAY ENORME DE GENEROS SIMPLIFICANDOLO A UNO QUE SOLO TRAE LOS NOMBRES
       platforms = platforms?.map((p) => p.platform.name); // LO MISMO DE ARRIBA PERO CON PLATAFORMAS
 
