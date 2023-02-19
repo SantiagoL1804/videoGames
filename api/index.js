@@ -23,7 +23,7 @@ const port = process.env.PORT || 3001;
 const loadAllAssets = require("./initializeData.js");
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
   await loadAllAssets();
   server.listen(3001, () => {
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console
