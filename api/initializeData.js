@@ -6,11 +6,12 @@ const { v4: uuidv4 } = require("uuid");
 const loadAllAssets = async () => {
   try {
     //! Me traigo los generos de la api
-
+    console.log("Entra api");
     let apiGenreResponse = await axios.get(
       `https://api.rawg.io/api/genres?key=${APIKEY}`,
       { headers: { "Accept-Encoding": "null" } }
     );
+    console.log("Salio api");
     //Los mapeo para extraer de cada uno de los juegos, el nombre
     let apiGenres = apiGenreResponse.data.results?.map((genre) => genre.name);
 
