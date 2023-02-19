@@ -49,6 +49,7 @@ router.get("/", async (req, res) => {
   //Paso nombre por query para filtrar los juegos que incluyan dicho nombre en su name
   const { name } = req.query;
   const allData = await getAllVideogames();
+  console.log(allData[0]);
   if (name) {
     //Si hay nombre pasado por query
     try {
