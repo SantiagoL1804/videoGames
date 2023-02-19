@@ -50,7 +50,7 @@ export default function Home() {
     }
   };
 
-  let genresNames = genres?.map((g) => g.name);
+  let genresNames = genres && genres.length > 0 && genres.map((g) => g.name);
   let sortGenreNames = genresNames.sort();
 
   useEffect(() => {
