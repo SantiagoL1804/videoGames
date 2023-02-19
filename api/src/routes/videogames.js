@@ -41,8 +41,7 @@ const getAllVideogames = async () => {
   let dbData = await getDbData();
 
   //Corto los juegos en 100 luego de juntar los de la base de datos con la api, ya que si creo un juego, se excederia de 100 juegos
-  let allData = [...dbData].slice(0, 100);
-  return allData;
+  return dbData;
 };
 
 router.get("/", async (req, res) => {
