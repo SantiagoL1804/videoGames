@@ -139,14 +139,13 @@
 }
 
 .aboutLiNetwork {
-  color: rgb(255, 255, 255);
+  color: rgb(206, 206, 206);
   transition: 0.5s;
 }
 
 .aboutLiNetwork:hover {
-  margin-right: 5px;
-  margin-bottom: 10px;
-  width: 60%;
+  color: rgb(255, 255, 255);
+  transition: 0.5s;
 }
 
 .descriptionContainer {
