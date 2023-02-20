@@ -135,12 +135,12 @@
   padding-left: 5px;
   margin-top: 11px;
   width: auto;
-  transition: 0.5s;
 }
 
 .aboutLiNetwork {
   color: rgb(206, 206, 206);
   transition: 0.5s;
+  margin-bottom: 10px;
 }
 
 .aboutLiNetwork:hover {
